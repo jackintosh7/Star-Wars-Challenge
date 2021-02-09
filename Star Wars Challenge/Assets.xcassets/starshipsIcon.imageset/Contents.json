@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "noun_spaceship_1311585.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "noun_spaceship_1311585@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "noun_spaceship_1311585@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
