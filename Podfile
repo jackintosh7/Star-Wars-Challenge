@@ -6,4 +6,5 @@ target 'Star Wars Challenge' do
   use_frameworks!
   pod 'Alamofire', '~> 5.2'
   pod 'RealmSwift', '~> 10.1.4'
+  pod 'SwiftDate', '~> 6.3'
 end

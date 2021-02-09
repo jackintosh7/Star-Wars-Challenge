@@ -8,7 +8,11 @@
 import UIKit
 
 class CategoryItemTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var subTextLabel: UILabel!
+    @IBOutlet weak var createdAtLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

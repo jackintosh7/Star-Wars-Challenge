@@ -5,22 +5,26 @@ PODS:
   - Realm/Headers (10.1.4)
   - RealmSwift (10.1.4):
     - Realm (= 10.1.4)
+  - SwiftDate (6.3.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - RealmSwift (~> 10.1.4)
+  - SwiftDate (~> 6.3)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Realm
     - RealmSwift
+    - SwiftDate
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Realm: 80f4fb2971ccb9adc27a47d0955ae8e533a7030b
   RealmSwift: 0e566ca714edb377bba8ea0811eafcea0b93734e
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
 
-PODFILE CHECKSUM: bbf6fac104ad6412646cb407f488482083baa5b3
+PODFILE CHECKSUM: bf9bfb3b5d67d99ff497ce7fe47c4a505b6f18d3
 
 COCOAPODS: 1.10.1

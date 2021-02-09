@@ -88,19 +88,16 @@ extension CategoryTableViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.titleLabel.text = self.categories[indexPath.row].rawValue
         cell.iconImageView.image = self.categoryIcons[indexPath.row]
-//        cell.bgView.backgroundColor = UIColor.white
         return cell
     }
-     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         cell.backgroundColor = UIColor.clear
     }
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let movie = self.categories[indexPath.row]
-    //        let vc = MovieDetailViewController()
-    //        vc.movie = movie
-    //        self.navigationController?.pushViewController(vc, animated: true)
-    //    }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = CategoryDetailTableViewController()
+        vc.category = self.categories[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

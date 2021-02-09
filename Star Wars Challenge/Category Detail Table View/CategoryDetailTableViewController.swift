@@ -6,132 +6,58 @@
 //
 
 import UIKit
+import SwiftDate
 
 class CategoryDetailTableViewController: UIViewController {
-  
+    
     var tableView: UITableView = UITableView()
     
-    private let starshipRepo = StarshipsRepository()
-    private let vehiclesRepo = VehiclesRepository()
-    private let filmsRepo = FilmRepository()
-    private let peopleRepo = PeopleRepository()
-    private let planetRepo = PlanetsRepository()
-    private let speciesRepo = SpeciesRepository()
-
-    var categoryItems = [Any]()
+    private let repo = CategoryRepository()
+    
+    var categoryItems = [CategoryListModel]()
     var category: SWCategories?
     var page = 1
     var totalResults: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+        let displayWidth: CGFloat = self.view.frame.width
+        let displayHeight: CGFloat = self.view.frame.height
+        
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight), style: .grouped)
+        let nib = UINib(nibName: "CategoryDetailTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "detailCategoryCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        
+        self.view.addSubview(tableView)
+        self.view.backgroundColor = UIColor.white
+        
+        if let category = self.category {
+            self.title = category.rawValue.uppercased()
+        }
+        self.fetchCategoryItems()
     }
 }
 
 extension CategoryDetailTableViewController {
     func fetchCategoryItems() {
-        switch self.category {
-        case .Films:
-            self.fetchFilms()
-        case .People:
-            self.fetchPeople()
-        case .Planets:
-            self.fetchPlanets()
-        case .Species:
-            self.fetchSpecies()
-        case .Starships:
-            self.fetchFilms()
-        case .Vehicles:
-            self.fetchVehicles()
-        case .none:
-            break
-        }
-    }
-    
-    func fetchFilms() {
-        filmsRepo.fetchAll(page: page) { result in
-            switch result {
-            case .success(let filmData):
-                self.totalResults = filmData.totalResults
-                self.categoryItems.append(contentsOf: filmData.films)
-                self.tableView.reloadData()
-            //TODO: DISMISS LOADING INDICATOR
-            case .failure(let error):
-                print("error", error)
+        if let category = self.category {
+            self.repo.fetchAll(page: self.page, category: category) { result in
+                switch result {
+                case .success(let categoryData):
+                    self.categoryItems.append(contentsOf: categoryData.categoryItems)
+                    self.totalResults = categoryData.totalResults
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
-    
-    func fetchPeople() {
-        peopleRepo.fetchAll(page: page) { result in
-            switch result {
-            case .success(let peopleData):
-                self.totalResults = peopleData.totalResults
-                self.categoryItems.append(contentsOf: peopleData.people)
-                self.tableView.reloadData()
-            //TODO: DISMISS LOADING INDICATOR
-            case .failure(let error):
-                print("error", error)
-            }
-        }
-    }
-    
-    func fetchPlanets() {
-        planetRepo.fetchAll(page: page) { result in
-            switch result {
-            case .success(let planetData):
-                self.totalResults = planetData.totalResults
-                self.categoryItems.append(contentsOf: planetData.planets)
-                self.tableView.reloadData()
-            //TODO: DISMISS LOADING INDICATOR
-            case .failure(let error):
-                print("error", error)
-            }
-        }
-    }
-    
-    func fetchSpecies() {
-        speciesRepo.fetchAll(page: page) { result in
-            switch result {
-            case .success(let speciesData):
-                self.totalResults = speciesData.totalResults
-                self.categoryItems.append(contentsOf: speciesData.species)
-                self.tableView.reloadData()
-            //TODO: DISMISS LOADING INDICATOR
-            case .failure(let error):
-                print("error", error)
-            }
-        }
-    }
-    
-    func fetchVehicles() {
-        vehiclesRepo.fetchAll(page: page) { result in
-            switch result {
-            case .success(let vehicleData):
-                self.totalResults = vehicleData.totalResults
-                self.categoryItems.append(contentsOf: vehicleData.vehicles)
-                self.tableView.reloadData()
-            //TODO: DISMISS LOADING INDICATOR
-            case .failure(let error):
-                print("error", error)
-            }
-        }
-    }
-    
-    func fetchStarships() {
-        starshipRepo.fetchAll(page: page) { result in
-            switch result {
-            case .success(let starshipData):
-                self.totalResults = starshipData.totalResults
-                self.categoryItems.append(contentsOf: starshipData.starships)
-                self.tableView.reloadData()
-            //TODO: DISMISS LOADING INDICATOR
-            case .failure(let error):
-                print("error", error)
-            }
-        }
-    }
-    
 }
 
 extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -143,13 +69,13 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
+        
         let headerViewXIB = Bundle.main.loadNibNamed("CategoryDetailHeader", owner: self, options: nil)
         let headerView = headerViewXIB?.first as! CategoryDetailHeaderView
         headerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60)
-
+        
         return headerView
     }
     
@@ -158,23 +84,52 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailCategoryCell", for: indexPath) as! CategoryItemTableViewCell
+        let categoryItem = self.categoryItems[indexPath.row]
         
-//        cell.titleLabel.text = self.categories[indexPath.row]
-//        cell.iconImageView.image = self.categoryIcons[indexPath.row]
-//        cell.bgView.backgroundColor = UIColor.white
+        cell.headerLabel.text = categoryItem.title
+        cell.subTextLabel.text = categoryItem.subTitle
+        cell.createdAtLabel.text = categoryItem.created?.toDate("yyyy-MM-dd HH:mm")?.toString()
+        
+        if indexPath.row == categoryItems.count - 1 { // last cell
+            if categoryItems.count != totalResults {
+                self.page += 1
+                self.fetchCategoryItems()
+            }
+        }
         return cell
     }
-     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let movie = self.categories[indexPath.row]
-    //        let vc = MovieDetailViewController()
-    //        vc.movie = movie
-    //        self.navigationController?.pushViewController(vc, animated: true)
-    //    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let categoryItem = self.categoryItems[indexPath.row]
+        
+        var vc : UIViewController?
+
+        if let category = self.category {
+            switch category {
+            case .Films:
+                vc = FilmViewController()
+            case .People:
+                vc = PeopleViewController()
+            case .Planets:
+                vc = PlanetViewController()
+            case .Species:
+                vc = SpeciesViewController()
+            case .Starships:
+                vc = StarshipViewController()
+            case .Vehicles:
+                vc = VehicleViewController()
+            }
+        }
+        
+        if let vc = vc {
+            //set URL
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
     
 }

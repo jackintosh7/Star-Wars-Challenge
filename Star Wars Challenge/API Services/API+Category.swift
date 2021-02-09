@@ -1,19 +1,20 @@
 //
-//  API+Vehicles+FetchAll.swift
+//  API+Category.swift
 //  Star Wars Challenge
 //
-//  Created by Jack Higgins on 2/4/21.
+//  Created by Jack Higgins on 2/8/21.
 //
 
 import Foundation
 import Alamofire
 
-extension API.Vehicles {
+extension API.Category {
     
     struct FetchAll: APIService {
         
         struct Request: Encodable {
-            
+            let category: SWCategories
+
             let page: Int
 
             func encode(to encoder: Encoder) throws {
@@ -28,16 +29,17 @@ extension API.Vehicles {
         
         struct Response: Decodable {
            
-           let vehicles: [VehiclesModel]
+           let categoryItems: [CategoryListModel]
            let totalResults: Int
            
            enum CodingKeys: String, CodingKey {
               
-              case vehicles = "results"
+              case categoryItems = "results"
               case totalResults = "count"
            }
         }
-        var path: String { "/vehicles"}
+        
+        var path: String { "/" + (self.request?.category.rawValue.lowercased())!}
         var method: Alamofire.HTTPMethod { .get }
         let request: Request?
         
@@ -45,4 +47,8 @@ extension API.Vehicles {
             self.request = request
         }
     }
+}
+struct CategoryData {
+    let categoryItems: [CategoryListModel]
+    let totalResults: Int
 }
