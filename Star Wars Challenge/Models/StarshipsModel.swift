@@ -41,7 +41,11 @@ final class StarshipsModel: Object, Decodable {
         super.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+        //Get URL as string so we can strip the object ID
+        let urlStr = try container.decode(String.self, forKey: .url)
+
+        id = urlStr.digits
+        url = urlStr
         name = try container.decode(.name)
         model = try container.decode(.model)
         starshipClass = try container.decode(.starshipClass)
@@ -60,7 +64,6 @@ final class StarshipsModel: Object, Decodable {
         cargoCapacity = try container.decode(.cargoCapacity)
         films = try container.decode(.films)
         pilots = try container.decode(.pilots)
-        url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)
     }

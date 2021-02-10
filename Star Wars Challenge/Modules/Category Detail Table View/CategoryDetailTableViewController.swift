@@ -96,6 +96,7 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
         cell.avatarView.clipsToBounds = true
         cell.selectionStyle = .none
 
+        /// Generate Initals
         if let title = categoryItem.title {
             cell.avatarView.avatarText.text = Utilities.sharedManager.initalGenerator(text: title)
             cell.headerLabel.text = categoryItem.title
@@ -103,7 +104,9 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
             cell.headerLabel.text = "-"
         }
         
-        if indexPath.row == categoryItems.count - 1 { // last cell
+        /// Pagination Config
+        /// TODO: Setup data dask to ensure all items are being fetched and returned (Stability improvement)
+        if indexPath.row == categoryItems.count - 1 {
             if categoryItems.count != totalResults {
                 self.page += 1
                 self.fetchCategoryItems()
@@ -116,6 +119,8 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
         let categoryItem = self.categoryItems[indexPath.row]
         let id = categoryItem.url?.digits
         
+        
+        /// Navigate to specific object VC based on category
         if let category = self.category {
             switch category {
             case .Films:

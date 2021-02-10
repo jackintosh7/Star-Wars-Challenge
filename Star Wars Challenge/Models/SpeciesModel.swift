@@ -23,7 +23,7 @@ final class SpeciesModel: Object, Decodable {
     @objc dynamic var hairColors: String = ""
     @objc dynamic var skinColors: String = ""
     @objc dynamic var language: String = ""
-    @objc dynamic var homeworld: String = ""
+    @objc dynamic var homeworld: String? //NOTE: Droid's homeworld is null, the only null value to be returned from the API
     var people = List<String>()
     var films = List<String>()
     @objc dynamic var url: String = ""
@@ -39,6 +39,11 @@ final class SpeciesModel: Object, Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        //Get URL as string so we can strip the object ID
+        let urlStr = try container.decode(String.self, forKey: .url)
+
+        id = urlStr.digits
+        url = urlStr
         name = try container.decode(.name)
         classification = try container.decode(.classification)
         designation = try container.decode(.designation)
@@ -48,10 +53,9 @@ final class SpeciesModel: Object, Decodable {
         hairColors = try container.decode(.hairColors)
         skinColors = try container.decode(.skinColors)
         language = try container.decode(.language)
-        homeworld = try container.decode(.homeworld)
+        homeworld = try? container.decodeIfPresent(.homeworld)
         people = try container.decode(.people)
         films = try container.decode(.films)
-        url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)
     }

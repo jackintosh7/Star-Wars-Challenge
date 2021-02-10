@@ -14,13 +14,20 @@ class PeopleRepository {
         id: String,
         completion: @escaping (Result<PeopleModel, Error>) -> ()
     ) {
-        let request = API.People.FetchByID.Request(id: id)
-        API.People.FetchByID(request: request).invoke { result in
-            switch result {
-            case .success(let person):
-                completion(.success(person))
-            case .failure(let error):
-                completion(.failure(error))
+        if let person = try? Realm().object(ofType: PeopleModel.self, forPrimaryKey: id) {
+            completion(.success(person))
+        } else {
+            let request = API.People.FetchByID.Request(id: id)
+            API.People.FetchByID(request: request).invoke { result in
+                switch result {
+                case .success(let person):
+                    try? Realm().write { realm in
+                        realm.add(person, update: .modified)
+                    }
+                    completion(.success(person))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

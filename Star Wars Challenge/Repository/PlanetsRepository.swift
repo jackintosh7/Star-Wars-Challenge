@@ -13,13 +13,20 @@ class PlanetsRepository {
         id: String,
         completion: @escaping (Result<PlanetsModel, Error>) -> ()
     ) {
-        let request = API.Planets.FetchByID.Request(id: id)
-        API.Planets.FetchByID(request: request).invoke { result in
-            switch result {
-            case .success(let planets):
-                completion(.success(planets))
-            case .failure(let error):
-                completion(.failure(error))
+        if let planet = try? Realm().object(ofType: PlanetsModel.self, forPrimaryKey: id) {
+            completion(.success(planet))
+        } else {
+            let request = API.Planets.FetchByID.Request(id: id)
+            API.Planets.FetchByID(request: request).invoke { result in
+                switch result {
+                case .success(let planet):
+                    try? Realm().write { realm in
+                        realm.add(planet, update: .modified)
+                    }
+                    completion(.success(planet))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

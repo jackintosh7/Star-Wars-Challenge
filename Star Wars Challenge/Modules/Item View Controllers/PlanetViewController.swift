@@ -10,13 +10,13 @@ import RealmSwift
 import SwiftDate
 
 class PlanetViewController: UIViewController {
-
+    
     var tableView: UITableView = UITableView()
     
     private let repo = PlanetsRepository()
     private let filmsRepo = FilmRepository()
     private let peopleRepo = PeopleRepository()
-
+    
     enum PlanetProperties: String {
         case Name
         case Diameter
@@ -52,7 +52,7 @@ class PlanetViewController: UIViewController {
     
     var filmNames: String = ""
     var residentNames: String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +77,7 @@ class PlanetViewController: UIViewController {
 }
 
 extension PlanetViewController {
+    
     func fetchPlanet() {
         if let id = self.objectID {
             repo.fetchByID(id: id) { result in
@@ -92,30 +93,36 @@ extension PlanetViewController {
             }
         }
     }
-    
+
     func fetchFilms() {
         guard let planet = self.planetObject else { return }
+        let fetchGroup = DispatchGroup()
         
-            for url in planet.films {
-                let id = url.digits
-                filmsRepo.fetchByID(id: id) { result in
-                    switch result {
-                    case .success(let film):
-                        self.filmNames.append(film.title + ", ")
-                    case .failure(let error):
-                        print("error", error)
-                    }
-                    if url == planet.films.last {
-                        self.fetchResidents()
-                    }
+        for url in planet.films {
+            fetchGroup.enter()
+            let id = url.digits
+            filmsRepo.fetchByID(id: id) { result in
+                
+                switch result {
+                case .success(let film):
+                    self.filmNames.append(film.title + ", ")
+                case .failure(let error):
+                    print("error", error)
                 }
+                fetchGroup.leave()
+            }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchResidents()
         }
     }
     
     func fetchResidents() {
         guard let planet = self.planetObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in planet.residents {
+            fetchGroup.enter()
             let id = url.digits
             peopleRepo.fetchByID(id: id) { result in
                 switch result {
@@ -124,10 +131,11 @@ extension PlanetViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == planet.residents.last {
-                    self.tableView.reloadData()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
 }
@@ -141,7 +149,7 @@ extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 283
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerViewXIB = Bundle.main.loadNibNamed("ItemHeaderView", owner: self, options: nil)
         let headerView = headerViewXIB?.first as! ItemHeaderView

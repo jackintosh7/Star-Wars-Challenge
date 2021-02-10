@@ -8,7 +8,7 @@
 import UIKit
 
 class StarshipViewController: UIViewController {
-
+    
     var tableView: UITableView = UITableView()
     
     private let repo = StarshipsRepository()
@@ -100,9 +100,11 @@ extension StarshipViewController {
     }
     
     func fetchFilms() {
-        guard let starship = self.starshipObject else { return }
+        guard let starships = self.starshipObject else { return }
+        let fetchGroup = DispatchGroup()
         
-        for url in starship.films {
+        for url in starships.films {
+            fetchGroup.enter()
             let id = url.digits
             filmsRepo.fetchByID(id: id) { result in
                 switch result {
@@ -111,29 +113,32 @@ extension StarshipViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == starship.films.last {
-                    self.fetchPilots()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchPilots()
         }
     }
     
     func fetchPilots() {
-        guard let starship = self.starshipObject else { return }
-
-        for url in starship.pilots {
+        guard let starships = self.starshipObject else { return }
+        let fetchGroup = DispatchGroup()
+        
+        for url in starships.pilots {
             let id = url.digits
             peopleRepo.fetchByID(id: id) { result in
                 switch result {
-                case .success(let starship):
-                    self.pilotNames.append(starship.name + ", ")
+                case .success(let vehicle):
+                    self.pilotNames.append(vehicle.name + ", ")
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == starship.pilots.last {
-                    self.tableView.reloadData()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
 }

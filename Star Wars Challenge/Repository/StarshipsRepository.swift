@@ -13,13 +13,21 @@ class StarshipsRepository {
         id: String,
         completion: @escaping (Result<StarshipsModel, Error>) -> ()
     ) {
-        let request = API.Starships.FetchByID.Request(id: id)
-        API.Starships.FetchByID(request: request).invoke { result in
-            switch result {
-            case .success(let starships):
-                completion(.success(starships))
-            case .failure(let error):
-                completion(.failure(error))
+        
+        if let starship = try? Realm().object(ofType: StarshipsModel.self, forPrimaryKey: id) {
+            completion(.success(starship))
+        } else {
+            let request = API.Starships.FetchByID.Request(id: id)
+            API.Starships.FetchByID(request: request).invoke { result in
+                switch result {
+                case .success(let starship):
+                    try? Realm().write { realm in
+                        realm.add(starship, update: .modified)
+                    }
+                    completion(.success(starship))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

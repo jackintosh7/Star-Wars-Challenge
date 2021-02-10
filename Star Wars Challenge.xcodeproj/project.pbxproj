@@ -245,6 +245,7 @@
 		345FB79C25D3C0630050663D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				34556FB725D46112001773BE /* SWNavigationController.swift */,
 				34C6A3D425CBDB39003CE7B8 /* Root Category Table View */,
 				3414CD3A25D2424000B21C73 /* Category Detail Table View */,
 				347F74BD25D259F100ED13AA /* Item View Controllers */,
@@ -302,7 +303,6 @@
 			children = (
 				34C6A2B625CB9A4E003CE7B8 /* AppDelegate.swift */,
 				34C6A2B825CB9A4E003CE7B8 /* SceneDelegate.swift */,
-				34556FB725D46112001773BE /* SWNavigationController.swift */,
 				345FB79C25D3C0630050663D /* Modules */,
 				345FB77A25D3A4050050663D /* Custom Views */,
 				34C6A36725CBCC7E003CE7B8 /* Repository */,

@@ -97,8 +97,10 @@ extension VehicleViewController {
     
     func fetchFilms() {
         guard let vehicle = self.vehicleObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in vehicle.films {
+            fetchGroup.enter()
             let id = url.digits
             filmsRepo.fetchByID(id: id) { result in
                 switch result {
@@ -107,15 +109,17 @@ extension VehicleViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == vehicle.films.last {
-                    self.fetchPilots()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchPilots()
         }
     }
     
     func fetchPilots() {
         guard let vehicle = self.vehicleObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in vehicle.pilots {
             let id = url.digits
@@ -126,10 +130,11 @@ extension VehicleViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == vehicle.pilots.last {
-                    self.tableView.reloadData()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
 }
@@ -163,7 +168,7 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource {
         let property = self.properties[indexPath.row]
         
         cell.property.text = property.rawValue.replacingOccurrences(of: "_", with: " ")
-
+        
         switch property {
         case .Created:
             let date = self.vehicleObject?.created.toISODate()

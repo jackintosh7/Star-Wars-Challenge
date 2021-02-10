@@ -13,7 +13,6 @@ final class PeopleModel: Object, Decodable {
     override class func primaryKey() -> String? { "id" }
     
     @objc dynamic var id: String = ""
-    
     @objc dynamic var name: String = ""
     @objc dynamic var birthYear: String = ""
     @objc dynamic var eyeColor: String = ""
@@ -31,6 +30,8 @@ final class PeopleModel: Object, Decodable {
     @objc dynamic var created: String = ""
     @objc dynamic var edited: String = ""
 
+    
+    
     override init() {
         super.init()
     }
@@ -39,7 +40,12 @@ final class PeopleModel: Object, Decodable {
         super.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(.name)
+        
+        //Get URL as string so we can strip the object ID
+        let urlStr = try container.decode(String.self, forKey: .url)
+
+        id = urlStr.digits
+        url = urlStr
         name = try container.decode(.name)
         birthYear = try container.decode(.birthYear)
         eyeColor = try container.decode(.eyeColor)
@@ -53,7 +59,6 @@ final class PeopleModel: Object, Decodable {
         species = try container.decode(.species)
         starships = try container.decode(.starships)
         vehicles = try container.decode(.vehicles)
-        url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)
     }

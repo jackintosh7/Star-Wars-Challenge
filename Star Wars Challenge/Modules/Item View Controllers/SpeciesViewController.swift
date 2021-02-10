@@ -95,27 +95,33 @@ extension SpeciesViewController {
     
     func fetchFilms() {
         guard let species = self.speciesObject else { return }
+        let fetchGroup = DispatchGroup()
         
-            for url in species.films {
-                let id = url.digits
-                filmsRepo.fetchByID(id: id) { result in
-                    switch result {
-                    case .success(let film):
-                        self.filmNames.append(film.title + ", ")
-                    case .failure(let error):
-                        print("error", error)
-                    }
-                    if url == species.films.last {
-                        self.fetchPeople()
-                    }
+        for url in species.films {
+            fetchGroup.enter()
+            let id = url.digits
+            filmsRepo.fetchByID(id: id) { result in
+
+                switch result {
+                case .success(let film):
+                    self.filmNames.append(film.title + ", ")
+                case .failure(let error):
+                    print("error", error)
                 }
+                fetchGroup.leave()
+            }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchPeople()
         }
     }
     
     func fetchPeople() {
         guard let species = self.speciesObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in species.people {
+            fetchGroup.enter()
             let id = url.digits
             peopleRepo.fetchByID(id: id) { result in
                 switch result {
@@ -124,10 +130,11 @@ extension SpeciesViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == species.people.last {
-                    self.tableView.reloadData()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
 }

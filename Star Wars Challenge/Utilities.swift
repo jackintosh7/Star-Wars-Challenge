@@ -12,6 +12,11 @@ class Utilities {
     
     static let sharedManager = Utilities()
     
+    func showAlertMessage(vc: UIViewController, titleStr:String, messageStr:String) -> Void {
+        let alert = UIAlertController(title: titleStr, message: messageStr, preferredStyle: UIAlertController.Style.alert);
+        vc.present(alert, animated: true, completion: nil)
+    }
+    
     func hexStringToUIColor(hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         

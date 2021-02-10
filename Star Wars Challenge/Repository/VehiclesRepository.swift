@@ -31,13 +31,20 @@ class VehiclesRepository {
         id: String,
         completion: @escaping (Result<VehiclesModel, Error>) -> ()
     ) {
-        let request = API.Vehicles.FetchByID.Request(id: id)
-        API.Vehicles.FetchByID(request: request).invoke { result in
-            switch result {
-            case .success(let vehicles):
-                completion(.success(vehicles))
-            case .failure(let error):
-                completion(.failure(error))
+        if let vehicle = try? Realm().object(ofType: VehiclesModel.self, forPrimaryKey: id) {
+            completion(.success(vehicle))
+        } else {
+            let request = API.Vehicles.FetchByID.Request(id: id)
+            API.Vehicles.FetchByID(request: request).invoke { result in
+                switch result {
+                case .success(let vehicle):
+                    try? Realm().write { realm in
+                        realm.add(vehicle, update: .modified)
+                    }
+                    completion(.success(vehicle))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

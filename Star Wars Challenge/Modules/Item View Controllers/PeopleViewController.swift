@@ -101,8 +101,11 @@ extension PeopleViewController {
     
     func fetchFilms() {
         guard let person = self.peopleObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in person.films {
+            fetchGroup.enter()
+            
             let id = url.digits
             filmsRepo.fetchByID(id: id) { result in
                 switch result {
@@ -111,17 +114,21 @@ extension PeopleViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == person.films.last {
-                    self.fetchVehicles()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchVehicles()
         }
     }
     
     func fetchVehicles() {
         guard let person = self.peopleObject else { return }
-        
+        let fetchGroup = DispatchGroup()
+
         for url in person.vehicles {
+            fetchGroup.enter()
+
             let id = url.digits
             vehiclesRepo.fetchByID(id: id) { result in
                 switch result {
@@ -130,17 +137,21 @@ extension PeopleViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == person.vehicles.last {
-                    self.fetchStarships()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchStarships()
         }
     }
     
     func fetchStarships() {
         guard let person = self.peopleObject else { return }
-        
+        let fetchGroup = DispatchGroup()
+
         for url in person.starships {
+            fetchGroup.enter()
+
             let id = url.digits
             starshipsRepo.fetchByID(id: id) { result in
                 switch result {
@@ -149,17 +160,21 @@ extension PeopleViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == person.starships.last {
-                    self.fetchVehicles()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchSpecies()
         }
     }
     
     func fetchSpecies() {
         guard let person = self.peopleObject else { return }
-        
+        let fetchGroup = DispatchGroup()
+
         for url in person.species {
+            fetchGroup.enter()
+
             let id = url.digits
             speciesRepo.fetchByID(id: id) { result in
                 switch result {
@@ -168,10 +183,11 @@ extension PeopleViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == person.species.last {
-                    self.tableView.reloadData()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
 }

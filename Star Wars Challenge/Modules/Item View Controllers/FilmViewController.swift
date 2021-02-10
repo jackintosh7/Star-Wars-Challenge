@@ -16,7 +16,7 @@ class FilmViewController: UIViewController {
     private let vehiclesRepo = VehiclesRepository()
     private let speciesRepo = SpeciesRepository()
     private let starshipsRepo = StarshipsRepository()
-    private let planetRepo = StarshipsRepository()
+    private let planetRepo = PlanetsRepository()
     
     enum FilmProperties: String {
         case Title
@@ -97,8 +97,11 @@ extension FilmViewController {
     
     func fetchVehicles() {
         guard let film = self.filmObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in film.vehicles {
+            fetchGroup.enter()
+            
             let id = url.digits
             vehiclesRepo.fetchByID(id: id) { result in
                 switch result {
@@ -107,17 +110,21 @@ extension FilmViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == film.vehicles.last {
-                    self.fetchStarships()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchStarships()
         }
     }
     
     func fetchStarships() {
         guard let film = self.filmObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in film.starships {
+            fetchGroup.enter()
+            
             let id = url.digits
             starshipsRepo.fetchByID(id: id) { result in
                 switch result {
@@ -126,17 +133,21 @@ extension FilmViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == film.starships.last {
-                    self.fetchSpecies()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchSpecies()
         }
     }
     
     func fetchSpecies() {
         guard let film = self.filmObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in film.species {
+            fetchGroup.enter()
+            
             let id = url.digits
             speciesRepo.fetchByID(id: id) { result in
                 switch result {
@@ -145,32 +156,59 @@ extension FilmViewController {
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == film.species.last {
-                    self.fetchPlanets()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchPlanets()
         }
     }
     
     func fetchPlanets() {
         guard let film = self.filmObject else { return }
+        let fetchGroup = DispatchGroup()
         
         for url in film.planets {
+            fetchGroup.enter()
+            
             let id = url.digits
             planetRepo.fetchByID(id: id) { result in
                 switch result {
                 case .success(let planet):
-                    self.planetNames.append(planet.model + ", ")
+                    self.planetNames.append(planet.name + ", ")
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == film.planets.last {
-                    self.tableView.reloadData()
-                }
+                fetchGroup.leave()
             }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.fetchCharacters()
         }
     }
     
+    func fetchCharacters() {
+        guard let film = self.filmObject else { return }
+        let fetchGroup = DispatchGroup()
+        
+        for url in film.characters {
+            fetchGroup.enter()
+            
+            let id = url.digits
+            peopleRepo.fetchByID(id: id) { result in
+                switch result {
+                case .success(let person):
+                    self.characterNames.append(person.name + ", ")
+                case .failure(let error):
+                    print("error", error)
+                }
+                fetchGroup.leave()
+            }
+        }
+        fetchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 extension FilmViewController: UITableViewDelegate, UITableViewDataSource {
@@ -202,7 +240,7 @@ extension FilmViewController: UITableViewDelegate, UITableViewDataSource {
         let property = self.properties[indexPath.row]
         
         cell.property.text = property.rawValue.replacingOccurrences(of: "_", with: " ")
-
+        
         switch property {
         case .Created:
             let date = self.filmObject?.created.toISODate()

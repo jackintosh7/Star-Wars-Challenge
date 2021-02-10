@@ -16,27 +16,19 @@ class CategoryTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.selectionStyle = .none
+        self.bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.bgView.layer.shadowColor = UIColor.black.cgColor
+        self.bgView.layer.shadowRadius = 5
         self.bgView.layer.cornerRadius = 5
-//        self.bgView.addShadow(offset: CGSize.init(width: 0, height: 3), color: UIColor.black, radius: 5.0, opacity: 0.35)
+        self.bgView.layer.shadowOpacity = 0.15
+        self.bgView.layer.masksToBounds = false;
+        self.bgView.clipsToBounds = false;
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
-    }
-
-}
-extension UIView {
-
-    func addShadow(offset: CGSize, color: UIColor, radius: CGFloat, opacity: Float) {
-        layer.masksToBounds = false
-        layer.shadowOffset = offset
-        layer.shadowColor = color.cgColor
-        layer.shadowRadius = radius
-        layer.shadowOpacity = opacity
-
-        let backgroundCGColor = backgroundColor?.cgColor
-        backgroundColor = nil
-        layer.backgroundColor =  backgroundCGColor
     }
 }

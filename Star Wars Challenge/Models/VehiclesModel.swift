@@ -13,7 +13,6 @@ final class VehiclesModel: Object, Decodable {
     override class func primaryKey() -> String? { "id" }
     
     @objc dynamic var id: String = ""
-    
     @objc dynamic var name: String = ""
     @objc dynamic var model: String = ""
     @objc dynamic var vehicleClass: String = ""
@@ -41,7 +40,12 @@ final class VehiclesModel: Object, Decodable {
         super.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+      
+        //Get URL as string so we can strip the object ID
+        let urlStr = try container.decode(String.self, forKey: .url)
+
+        id = urlStr.digits
+        url = urlStr
         name = try container.decode(.name)
         model = try container.decode(.model)
         vehicleClass = try container.decode(.vehicleClass)
@@ -58,7 +62,6 @@ final class VehiclesModel: Object, Decodable {
         cargoCapacity = try container.decode(.cargoCapacity)
         films = try container.decode(.films)
         pilots = try container.decode(.pilots)
-        url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)
     }

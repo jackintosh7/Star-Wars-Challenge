@@ -82,7 +82,6 @@ extension CategoryTableViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.titleLabel.text = self.categories[indexPath.row].rawValue
         cell.iconImageView.image = self.categoryIcons[indexPath.row]
-        cell.selectionStyle = .none
 
         return cell
     }

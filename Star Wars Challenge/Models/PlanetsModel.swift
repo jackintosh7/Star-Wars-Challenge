@@ -37,7 +37,13 @@ final class PlanetsModel: Object, Decodable {
         super.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+      
+        //Get URL as string so we can strip the object ID
+        let urlStr = try container.decode(String.self, forKey: .url)
+
+        id = urlStr.digits
+        url = urlStr
+        id = try container.decode(.url)
         name = try container.decode(.name)
         diameter = try container.decode(.diameter)
         rotationPeriod = try container.decode(.rotationPeriod)
@@ -49,7 +55,6 @@ final class PlanetsModel: Object, Decodable {
         surfaceWater = try container.decode(.surfaceWater)
         residents = try container.decode(.residents)
         films = try container.decode(.films)
-        url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)
     }
