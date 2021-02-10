@@ -19,6 +19,6 @@ pod install
 ```
 
 ## Libaries
-    * Alamofire - Networking
-    * Realm - Local database, caching
-    * SwiftDate - Date parsing
+* Alamofire - Networking
+* Realm - Local database, caching
+* SwiftDate - Date parsing
