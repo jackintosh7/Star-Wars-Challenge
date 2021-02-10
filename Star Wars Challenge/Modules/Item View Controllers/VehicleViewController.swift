@@ -63,7 +63,7 @@ class VehicleViewController: UIViewController {
         
         self.title = "STAR WARS API"
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - DeviceDimensions.barHeight), style: .grouped)
         let nib = UINib(nibName: "ItemTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ItemCell")
         tableView.dataSource = self
@@ -166,7 +166,8 @@ extension VehicleViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch property {
         case .Created:
-            cell.value.text = self.vehicleObject?.created
+            let date = self.vehicleObject?.created.toISODate()
+            cell.value.text = date?.date.toFormat("MM/dd/yyyy")
         case .Films:
             cell.value.text = self.filmNames
         case .Name:

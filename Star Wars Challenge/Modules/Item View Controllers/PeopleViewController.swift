@@ -67,7 +67,7 @@ class PeopleViewController: UIViewController {
         
         self.title = "STAR WARS API"
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - DeviceDimensions.barHeight), style: .grouped)
         let nib = UINib(nibName: "ItemTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ItemCell")
         tableView.dataSource = self
@@ -208,7 +208,8 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch property {
         case .Created:
-            cell.value.text = self.peopleObject?.created
+            let date = self.peopleObject?.created.toISODate()
+            cell.value.text = date?.date.toFormat("MM/dd/yyyy")
         case .Gender:
             cell.value.text = self.peopleObject?.gender
         case .Birth_Year:

@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+       
         let vc = CategoryTableViewController()
-        let navigationVC = UINavigationController(rootViewController: vc)
-//        navigationVC.navigationBar.setBackgroundImage(UIImage(named: "rootheaderImage"),
-//                                                      for: .default)
+        let navigationVC = SWNavigationController(rootViewController: vc)
+        
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }

@@ -37,24 +37,19 @@ class CategoryTableViewController: UIViewController {
         
         self.title = "STAR WARS API"
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - DeviceDimensions.barHeight), style: .grouped)
         let nib = UINib(nibName: "CategoryTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "CategoryCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-
         
         let footerViewXIB = Bundle.main.loadNibNamed("TableViewFooterView", owner: self, options: nil)
         let footerView = footerViewXIB?.first as! UIView
         footerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 125)
 
-        //Add that view in Table Footer View.
         tableView.tableFooterView = footerView
-        
-//        tableView.backgroundColor = UIColor.clear
         self.view.backgroundColor = SWColors.lightGray
-        
         self.view.addSubview(tableView)
     }
 }
@@ -87,6 +82,8 @@ extension CategoryTableViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.titleLabel.text = self.categories[indexPath.row].rawValue
         cell.iconImageView.image = self.categoryIcons[indexPath.row]
+        cell.selectionStyle = .none
+
         return cell
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

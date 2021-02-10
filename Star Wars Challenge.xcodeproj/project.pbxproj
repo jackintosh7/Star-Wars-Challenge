@@ -17,6 +17,7 @@
 		3414CD6F25D24DF000B21C73 /* CategoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414CD6E25D24DF000B21C73 /* CategoryListModel.swift */; };
 		3414CD7425D24DFB00B21C73 /* API+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414CD7325D24DFB00B21C73 /* API+Category.swift */; };
 		3414CD8B25D24E9F00B21C73 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414CD8A25D24E9F00B21C73 /* CategoryRepository.swift */; };
+		34556FB825D46112001773BE /* SWNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34556FB725D46112001773BE /* SWNavigationController.swift */; };
 		345FB76725D37A120050663D /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345FB76625D37A120050663D /* ItemTableViewController.swift */; };
 		345FB76D25D383730050663D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345FB76C25D383730050663D /* AvatarView.swift */; };
 		347F748325D251A100ED13AA /* CategoryDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 347F748225D251A100ED13AA /* CategoryDetailTableViewCell.xib */; };
@@ -97,6 +98,7 @@
 		3414CD6E25D24DF000B21C73 /* CategoryListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListModel.swift; sourceTree = "<group>"; };
 		3414CD7325D24DFB00B21C73 /* API+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Category.swift"; sourceTree = "<group>"; };
 		3414CD8A25D24E9F00B21C73 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryRepository.swift; path = "Star Wars Challenge/Repository/CategoryRepository.swift"; sourceTree = SOURCE_ROOT; };
+		34556FB725D46112001773BE /* SWNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWNavigationController.swift; sourceTree = "<group>"; };
 		345FB76625D37A120050663D /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		345FB76C25D383730050663D /* AvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		347F748225D251A100ED13AA /* CategoryDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -246,7 +248,6 @@
 				34C6A3D425CBDB39003CE7B8 /* Root Category Table View */,
 				3414CD3A25D2424000B21C73 /* Category Detail Table View */,
 				347F74BD25D259F100ED13AA /* Item View Controllers */,
-				34D61ED025D347AE00DB59C2 /* Item TableViewCell */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -254,6 +255,7 @@
 		347F74BD25D259F100ED13AA /* Item View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				34D61ED025D347AE00DB59C2 /* Item TableViewCell */,
 				347F749F25D259AB00ED13AA /* PlanetViewController.swift */,
 				347F74A425D259BB00ED13AA /* PeopleViewController.swift */,
 				347F74A925D259C000ED13AA /* VehicleViewController.swift */,
@@ -300,6 +302,7 @@
 			children = (
 				34C6A2B625CB9A4E003CE7B8 /* AppDelegate.swift */,
 				34C6A2B825CB9A4E003CE7B8 /* SceneDelegate.swift */,
+				34556FB725D46112001773BE /* SWNavigationController.swift */,
 				345FB79C25D3C0630050663D /* Modules */,
 				345FB77A25D3A4050050663D /* Custom Views */,
 				34C6A36725CBCC7E003CE7B8 /* Repository */,
@@ -643,6 +646,7 @@
 				3414CD2D25D2405E00B21C73 /* CategoryDetailTableViewCell.swift in Sources */,
 				3414CD7425D24DFB00B21C73 /* API+Category.swift in Sources */,
 				34C6A2F925CBAA7D003CE7B8 /* API.swift in Sources */,
+				34556FB825D46112001773BE /* SWNavigationController.swift in Sources */,
 				347F74B925D259E600ED13AA /* SpeciesViewController.swift in Sources */,
 				34E8421625CCF82A00640ADE /* PlanetsRepository.swift in Sources */,
 				34C6A32825CBAFA2003CE7B8 /* FilmsModel.swift in Sources */,

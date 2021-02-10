@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import SwiftDate
 
 class PlanetViewController: UIViewController {
 
@@ -60,7 +61,7 @@ class PlanetViewController: UIViewController {
         
         self.title = "STAR WARS API"
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - DeviceDimensions.barHeight), style: .grouped)
         let nib = UINib(nibName: "ItemTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ItemCell")
         tableView.dataSource = self
@@ -163,7 +164,8 @@ extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch property {
         case .Created:
-            cell.value.text = self.planetObject?.created
+            let date = self.planetObject?.created.toISODate()
+            cell.value.text = date?.date.toFormat("MM/dd/yyyy")
         case .Climate:
             cell.value.text = self.planetObject?.climate
         case .Diameter:

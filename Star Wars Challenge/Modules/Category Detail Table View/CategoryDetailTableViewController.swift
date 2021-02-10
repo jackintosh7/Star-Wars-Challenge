@@ -25,7 +25,7 @@ class CategoryDetailTableViewController: UIViewController {
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - DeviceDimensions.barHeight), style: .grouped)
         let nib = UINib(nibName: "CategoryDetailTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "detailCategoryCell")
         tableView.dataSource = self
@@ -88,22 +88,14 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
         cell.subTextLabel.text = categoryItem.subTitle
         
         if let createdAt = categoryItem.created {
-            let dateFormatterGet = DateFormatter()
-            dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss:SSSZZZZZ"
-            
-            let dateFormatterPrint = DateFormatter()
-            dateFormatterPrint.dateFormat = "MMM dd,yyyy"
-            
-            if let date = dateFormatterGet.date(from: createdAt) {
-                print(dateFormatterPrint.string(from: date))
-            } else {
-                print("There was an error decoding the string")
-            }
+            let date = createdAt.toISODate()
+            cell.createdAtLabel.text = date?.date.toFormat("MM/dd/yyyy")
         }
         
         cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width/2
         cell.avatarView.clipsToBounds = true
-        
+        cell.selectionStyle = .none
+
         if let title = categoryItem.title {
             cell.avatarView.avatarText.text = Utilities.sharedManager.initalGenerator(text: title)
             cell.headerLabel.text = categoryItem.title
