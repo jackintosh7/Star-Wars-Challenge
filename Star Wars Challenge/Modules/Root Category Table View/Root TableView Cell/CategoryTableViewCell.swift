@@ -17,12 +17,11 @@ class CategoryTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.bgView.layer.cornerRadius = 5
-        self.bgView.addShadow(offset: CGSize.init(width: 0, height: 3), color: UIColor.black, radius: 5.0, opacity: 0.35)
+//        self.bgView.addShadow(offset: CGSize.init(width: 0, height: 3), color: UIColor.black, radius: 5.0, opacity: 0.35)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

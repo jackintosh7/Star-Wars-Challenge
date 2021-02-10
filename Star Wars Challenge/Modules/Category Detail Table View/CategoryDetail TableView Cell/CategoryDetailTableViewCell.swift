@@ -17,8 +17,6 @@ class CategoryItemTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        self.avatarView.bgView.layer.cornerRadius = self.avatarView.bgView.frame.size.width / 2
-//        self.avatarView.bgView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

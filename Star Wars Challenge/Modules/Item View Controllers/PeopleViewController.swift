@@ -62,7 +62,6 @@ class PeopleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
@@ -79,18 +78,19 @@ class PeopleViewController: UIViewController {
         self.view.backgroundColor = UIColor.black
         self.view.addSubview(tableView)
         
-        self.fetchPlanet()
+        self.fetchPerson()
     }
 }
 
 extension PeopleViewController {
-    func fetchPlanet() {
+    func fetchPerson() {
         if let id = self.objectID {
             repo.fetchByID(id: id) { result in
                 switch result {
                 case .success(let person):
                     self.peopleObject = person
                     self.title = person.name.uppercased()
+                    self.tableView.reloadData()
                     self.fetchFilms()
                 case .failure(let error):
                     print("error", error)
@@ -204,8 +204,8 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         
         let property = self.properties[indexPath.row]
         
-        cell.property.text = property.rawValue.replacingOccurrences(of: " ", with: "_")
-        
+        cell.property.text = property.rawValue.replacingOccurrences(of: "_", with: " ")
+
         switch property {
         case .Created:
             cell.value.text = self.peopleObject?.created

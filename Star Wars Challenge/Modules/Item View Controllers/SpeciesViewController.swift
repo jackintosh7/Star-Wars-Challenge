@@ -1,61 +1,61 @@
 //
-//  PlanetViewController.swift
+//  SpeciesViewController.swift
 //  Star Wars Challenge
 //
 //  Created by Jack Higgins on 2/9/21.
 //
 
 import UIKit
-import RealmSwift
 
-class PlanetViewController: UIViewController {
-
+class SpeciesViewController: UIViewController {
+    
     var tableView: UITableView = UITableView()
     
-    private let repo = PlanetsRepository()
+    private let repo = SpeciesRepository()
     private let filmsRepo = FilmRepository()
     private let peopleRepo = PeopleRepository()
 
-    enum PlanetProperties: String {
+    enum SpeciesProperties: String {
         case Name
-        case Diameter
-        case Rotation_Period
-        case Orbital_Period
-        case Gravity
-        case Population
-        case Climate
-        case Terrain
-        case Surface_Water
-        case Residents
+        case Classification
+        case Designation
+        case Avg_Height
+        case Avg_Lifespan
+        case Eye_Color
+        case Hair_Color
+        case Skin_Color
+        case Language
+        case Homeworld
+        case People
         case Films
         case Created
     }
     
     var properties = [
-        PlanetProperties.Name,
-        PlanetProperties.Diameter,
-        PlanetProperties.Rotation_Period,
-        PlanetProperties.Orbital_Period,
-        PlanetProperties.Gravity,
-        PlanetProperties.Population,
-        PlanetProperties.Climate,
-        PlanetProperties.Terrain,
-        PlanetProperties.Surface_Water,
-        PlanetProperties.Residents,
-        PlanetProperties.Films,
-        PlanetProperties.Created
+        SpeciesProperties.Name,
+        SpeciesProperties.Classification,
+        SpeciesProperties.Designation,
+        SpeciesProperties.Avg_Height,
+        SpeciesProperties.Avg_Lifespan,
+        SpeciesProperties.Eye_Color,
+        SpeciesProperties.Hair_Color,
+        SpeciesProperties.Skin_Color,
+        SpeciesProperties.Language,
+        SpeciesProperties.Homeworld,
+        SpeciesProperties.People,
+        SpeciesProperties.Films,
+        SpeciesProperties.Created
     ]
     
     var objectID: String?
-    var planetObject: PlanetsModel?
+    var speciesObject: SpeciesModel?
     
     var filmNames: String = ""
-    var residentNames: String = ""
+    var peopleNames: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
@@ -72,18 +72,19 @@ class PlanetViewController: UIViewController {
         self.view.backgroundColor = UIColor.black
         self.view.addSubview(tableView)
         
-        self.fetchPlanet()
+        self.fetchSpecies()
     }
 }
 
-extension PlanetViewController {
-    func fetchPlanet() {
+extension SpeciesViewController {
+    func fetchSpecies() {
         if let id = self.objectID {
             repo.fetchByID(id: id) { result in
                 switch result {
-                case .success(let planet):
-                    self.planetObject = planet
-                    self.title = planet.name.uppercased()
+                case .success(let species):
+                    self.speciesObject = species
+                    self.title = species.name.uppercased()
+                    self.tableView.reloadData()
                     self.fetchFilms()
                 case .failure(let error):
                     print("error", error)
@@ -93,9 +94,9 @@ extension PlanetViewController {
     }
     
     func fetchFilms() {
-        guard let planet = self.planetObject else { return }
+        guard let species = self.speciesObject else { return }
         
-            for url in planet.films {
+            for url in species.films {
                 let id = url.digits
                 filmsRepo.fetchByID(id: id) { result in
                     switch result {
@@ -104,26 +105,26 @@ extension PlanetViewController {
                     case .failure(let error):
                         print("error", error)
                     }
-                    if url == planet.films.last {
-                        self.fetchResidents()
+                    if url == species.films.last {
+                        self.fetchPeople()
                     }
                 }
         }
     }
     
-    func fetchResidents() {
-        guard let planet = self.planetObject else { return }
+    func fetchPeople() {
+        guard let species = self.speciesObject else { return }
         
-        for url in planet.residents {
+        for url in species.people {
             let id = url.digits
             peopleRepo.fetchByID(id: id) { result in
                 switch result {
                 case .success(let person):
-                    self.residentNames.append(person.name + ", ")
+                    self.peopleNames.append(person.name + ", ")
                 case .failure(let error):
                     print("error", error)
                 }
-                if url == planet.residents.last {
+                if url == species.people.last {
                     self.tableView.reloadData()
                 }
             }
@@ -131,7 +132,7 @@ extension PlanetViewController {
     }
 }
 
-extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
+extension SpeciesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 133
@@ -145,8 +146,8 @@ extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
         let headerViewXIB = Bundle.main.loadNibNamed("ItemHeaderView", owner: self, options: nil)
         let headerView = headerViewXIB?.first as! ItemHeaderView
         headerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 283)
-        headerView.avatar.avatarText.text = Utilities.sharedManager.initalGenerator(text: planetObject?.name ?? "-")
-        headerView.titleText.text = planetObject?.name
+        headerView.avatar.avatarText.text = Utilities.sharedManager.initalGenerator(text: speciesObject?.name ?? "-")
+        headerView.titleText.text = speciesObject?.classification
         return headerView
     }
     
@@ -159,33 +160,35 @@ extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
         
         let property = self.properties[indexPath.row]
         
-        cell.property.text = property.rawValue.replacingOccurrences(of: " ", with: "_")
-        
+        cell.property.text = property.rawValue.replacingOccurrences(of: "_", with: " ")
+
         switch property {
         case .Created:
-            cell.value.text = self.planetObject?.created
-        case .Climate:
-            cell.value.text = self.planetObject?.climate
-        case .Diameter:
-            cell.value.text = self.planetObject?.diameter
-        case .Gravity:
-            cell.value.text = self.planetObject?.gravity
-        case .Name:
-            cell.value.text = self.planetObject?.name
-        case .Orbital_Period:
-            cell.value.text = self.planetObject?.orbitalPeriod
-        case .Population:
-            cell.value.text = self.planetObject?.population
+            cell.value.text = self.speciesObject?.created
         case .Films:
             cell.value.text = self.filmNames
-        case .Residents:
-            cell.value.text = self.residentNames
-        case .Terrain:
-            cell.value.text = self.planetObject?.terrain
-        case .Surface_Water:
-            cell.value.text = self.planetObject?.surfaceWater
-        case .Rotation_Period:
-            cell.value.text = self.planetObject?.rotationPeriod
+        case .People:
+            cell.value.text = self.peopleNames
+        case .Name:
+            cell.value.text = self.speciesObject?.name
+        case .Classification:
+            cell.value.text = self.speciesObject?.classification
+        case .Designation:
+            cell.value.text = self.speciesObject?.designation
+        case .Avg_Height:
+            cell.value.text = self.speciesObject?.avgHeight
+        case .Avg_Lifespan:
+            cell.value.text = self.speciesObject?.avgLifespan
+        case .Eye_Color:
+            cell.value.text = self.speciesObject?.eyeColors
+        case .Hair_Color:
+            cell.value.text = self.speciesObject?.hairColors
+        case .Skin_Color:
+            cell.value.text = self.speciesObject?.skinColors
+        case .Language:
+            cell.value.text = self.speciesObject?.language
+        case .Homeworld:
+            cell.value.text = self.speciesObject?.homeworld
         }
         return cell
     }

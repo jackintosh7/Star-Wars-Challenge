@@ -24,8 +24,8 @@ final class SpeciesModel: Object, Decodable {
     @objc dynamic var skinColors: String = ""
     @objc dynamic var language: String = ""
     @objc dynamic var homeworld: String = ""
-    @objc dynamic var people: [String]?
-    @objc dynamic var films: [String]?
+    var people = List<String>()
+    var films = List<String>()
     @objc dynamic var url: String = ""
     @objc dynamic var created: String = ""
     @objc dynamic var edited: String = ""
@@ -49,8 +49,8 @@ final class SpeciesModel: Object, Decodable {
         skinColors = try container.decode(.skinColors)
         language = try container.decode(.language)
         homeworld = try container.decode(.homeworld)
-        people = try? container.decodeIfPresent(.people)
-        films = try? container.decodeIfPresent(.films)
+        people = try container.decode(.people)
+        films = try container.decode(.films)
         url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)

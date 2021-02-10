@@ -22,7 +22,6 @@ class CategoryDetailTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
@@ -91,20 +90,20 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
         if let createdAt = categoryItem.created {
             let dateFormatterGet = DateFormatter()
             dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss:SSSZZZZZ"
-
+            
             let dateFormatterPrint = DateFormatter()
             dateFormatterPrint.dateFormat = "MMM dd,yyyy"
-
+            
             if let date = dateFormatterGet.date(from: createdAt) {
                 print(dateFormatterPrint.string(from: date))
             } else {
-               print("There was an error decoding the string")
+                print("There was an error decoding the string")
             }
         }
-
+        
         cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width/2
         cell.avatarView.clipsToBounds = true
-
+        
         if let title = categoryItem.title {
             cell.avatarView.avatarText.text = Utilities.sharedManager.initalGenerator(text: title)
             cell.headerLabel.text = categoryItem.title
@@ -123,32 +122,35 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryItem = self.categoryItems[indexPath.row]
+        let id = categoryItem.url?.digits
         
-        var vc = PlanetViewController()
-        vc.objectID = "2"
-
-//        if let category = self.category {
-//            switch category {
-//            case .Films:
-//                vc = FilmViewController()
-//            case .People:
-//                vc = PeopleViewController()
-//            case .Planets:
-////                vc = PlanetViewController()
-//                vc.objectID = "2"
-//            case .Species:
-//                vc = SpeciesViewController()
-//            case .Starships:
-//                vc = StarshipViewController()
-//            case .Vehicles:
-//                vc = VehicleViewController()
-//            }
-//        }
-        
-//        if let vc = vc {
-            //set URL
-            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-        
+        if let category = self.category {
+            switch category {
+            case .Films:
+                let vc = FilmViewController()
+                vc.objectID = id
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .People:
+                let vc = PeopleViewController()
+                vc.objectID = id
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .Planets:
+                let vc = PlanetViewController()
+                vc.objectID = id
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .Species:
+                let vc = SpeciesViewController()
+                vc.objectID = id
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .Starships:
+                let vc = StarshipViewController()
+                vc.objectID = id
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .Vehicles:
+                let vc = VehicleViewController()
+                vc.objectID = id
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }

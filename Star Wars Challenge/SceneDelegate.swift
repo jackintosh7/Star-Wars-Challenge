@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let vc = CategoryTableViewController()
-        var navigationVC = UINavigationController(rootViewController: vc)
+        let navigationVC = UINavigationController(rootViewController: vc)
 //        navigationVC.navigationBar.setBackgroundImage(UIImage(named: "rootheaderImage"),
 //                                                      for: .default)
         window?.rootViewController = navigationVC

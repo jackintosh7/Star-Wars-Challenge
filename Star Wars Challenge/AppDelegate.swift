@@ -14,26 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 //        let navBackgroundImage:UIImage! = UIImage(named: "rootheaderImage")
 //        UINavigationBar.appearance().setBackgroundImage(navBackgroundImage, for: .default)
-        let repo = PeopleRepository()
-        
-//        repo.fetchAll(page: 1) { (result) in
-//            switch result {
-//            case .success(let people):
-//                print(people.people)
-//            //TODO: DISMISS LOADING INDICATOR
-//            case .failure(let error):
-//            print(error)
-//        }
-//        }
-//        repo.fetchByID(id: String(1)) { (result) in
-//            switch result {
-//            case .success(let people):
-//                print(people)
-//            //TODO: DISMISS LOADING INDICATOR
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
         
         return true
     }

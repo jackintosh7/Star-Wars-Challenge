@@ -32,7 +32,6 @@ class CategoryTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
@@ -53,7 +52,7 @@ class CategoryTableViewController: UIViewController {
         //Add that view in Table Footer View.
         tableView.tableFooterView = footerView
         
-        tableView.backgroundColor = UIColor.clear
+//        tableView.backgroundColor = UIColor.clear
         self.view.backgroundColor = SWColors.lightGray
         
         self.view.addSubview(tableView)
