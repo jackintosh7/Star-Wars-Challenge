@@ -67,14 +67,14 @@ extension CategoryTableViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 325
+        return 300
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         let headerViewXIB = Bundle.main.loadNibNamed("HeaderView", owner: self, options: nil)
         let headerView = headerViewXIB?.first as! HeaderView
-        headerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 325)
+        headerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300)
 
         return headerView
     }

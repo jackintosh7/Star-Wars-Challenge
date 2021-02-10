@@ -23,8 +23,8 @@ final class PlanetsModel: Object, Decodable {
     @objc dynamic var climate: String = ""
     @objc dynamic var terrain: String = ""
     @objc dynamic var surfaceWater: String = ""
-    @objc dynamic var residents: [String]?
-    @objc dynamic var films: [String]?
+    var residents = List<String>()
+    var films = List<String>()
     @objc dynamic var url: String = ""
     @objc dynamic var created: String = ""
     @objc dynamic var edited: String = ""
@@ -47,8 +47,8 @@ final class PlanetsModel: Object, Decodable {
         climate = try container.decode(.climate)
         terrain = try container.decode(.terrain)
         surfaceWater = try container.decode(.surfaceWater)
-        residents = try? container.decodeIfPresent(.residents)
-        films = try? container.decodeIfPresent(.films)
+        residents = try container.decode(.residents)
+        films = try container.decode(.films)
         url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)

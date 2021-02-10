@@ -17,6 +17,8 @@
 		3414CD6F25D24DF000B21C73 /* CategoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414CD6E25D24DF000B21C73 /* CategoryListModel.swift */; };
 		3414CD7425D24DFB00B21C73 /* API+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414CD7325D24DFB00B21C73 /* API+Category.swift */; };
 		3414CD8B25D24E9F00B21C73 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414CD8A25D24E9F00B21C73 /* CategoryRepository.swift */; };
+		345FB76725D37A120050663D /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345FB76625D37A120050663D /* ItemTableViewController.swift */; };
+		345FB76D25D383730050663D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345FB76C25D383730050663D /* AvatarView.swift */; };
 		347F748325D251A100ED13AA /* CategoryDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 347F748225D251A100ED13AA /* CategoryDetailTableViewCell.xib */; };
 		347F748825D2570600ED13AA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F748725D2570600ED13AA /* Utilities.swift */; };
 		347F74A025D259AB00ED13AA /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F749F25D259AB00ED13AA /* PlanetViewController.swift */; };
@@ -53,6 +55,9 @@
 		34C6A3AE25CBD727003CE7B8 /* FilmsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6A3AD25CBD727003CE7B8 /* FilmsData.swift */; };
 		34C6A3C325CBDA79003CE7B8 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6A3C225CBDA79003CE7B8 /* CategoryTableViewCell.swift */; };
 		34C6A3CB25CBDA94003CE7B8 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C6A3CA25CBDA94003CE7B8 /* CategoryTableViewCell.xib */; };
+		34D61EBD25D3431900DB59C2 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D61EBC25D3431900DB59C2 /* ItemTableViewCell.xib */; };
+		34D61EC525D3433F00DB59C2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D61EC425D3433F00DB59C2 /* ItemTableViewCell.swift */; };
+		34D61EE725D3509F00DB59C2 /* AvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D61EE625D3509F00DB59C2 /* AvatarView.xib */; };
 		34E8416125CCF25500640ADE /* StarshipsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E8416025CCF25500640ADE /* StarshipsData.swift */; };
 		34E8418B25CCF37700640ADE /* API+Starships+FetchByID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E8418A25CCF37700640ADE /* API+Starships+FetchByID.swift */; };
 		34E8419725CCF39D00640ADE /* API+Vehicles+FetchByID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E8419625CCF39D00640ADE /* API+Vehicles+FetchByID.swift */; };
@@ -98,6 +103,8 @@
 		3414CD6E25D24DF000B21C73 /* CategoryListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListModel.swift; sourceTree = "<group>"; };
 		3414CD7325D24DFB00B21C73 /* API+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Category.swift"; sourceTree = "<group>"; };
 		3414CD8A25D24E9F00B21C73 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryRepository.swift; path = "Star Wars Challenge/Repository/CategoryRepository.swift"; sourceTree = SOURCE_ROOT; };
+		345FB76625D37A120050663D /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		345FB76C25D383730050663D /* AvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		347F748225D251A100ED13AA /* CategoryDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryDetailTableViewCell.xib; sourceTree = "<group>"; };
 		347F748725D2570600ED13AA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		347F749F25D259AB00ED13AA /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +147,9 @@
 		34C6A3AD25CBD727003CE7B8 /* FilmsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmsData.swift; sourceTree = "<group>"; };
 		34C6A3C225CBDA79003CE7B8 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		34C6A3CA25CBDA94003CE7B8 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		34D61EBC25D3431900DB59C2 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		34D61EC425D3433F00DB59C2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		34D61EE625D3509F00DB59C2 /* AvatarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarView.xib; sourceTree = "<group>"; };
 		34E8416025CCF25500640ADE /* StarshipsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsData.swift; sourceTree = "<group>"; };
 		34E8418A25CCF37700640ADE /* API+Starships+FetchByID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Starships+FetchByID.swift"; sourceTree = "<group>"; };
 		34E8419625CCF39D00640ADE /* API+Vehicles+FetchByID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Vehicles+FetchByID.swift"; sourceTree = "<group>"; };
@@ -185,13 +195,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3414CCFC25D22E9700B21C73 /* CategoryTableView Cell */ = {
+		3414CCFC25D22E9700B21C73 /* Root TableView Cell */ = {
 			isa = PBXGroup;
 			children = (
 				34C6A3C225CBDA79003CE7B8 /* CategoryTableViewCell.swift */,
 				34C6A3CA25CBDA94003CE7B8 /* CategoryTableViewCell.xib */,
 			);
-			path = "CategoryTableView Cell";
+			path = "Root TableView Cell";
 			sourceTree = "<group>";
 		};
 		3414CD0025D22EB000B21C73 /* Root Main Header Footer */ = {
@@ -223,11 +233,20 @@
 			path = "Category Detail Header";
 			sourceTree = "<group>";
 		};
+		345FB76B25D383590050663D /* Avatar View */ = {
+			isa = PBXGroup;
+			children = (
+				345FB76C25D383730050663D /* AvatarView.swift */,
+				34D61EE625D3509F00DB59C2 /* AvatarView.xib */,
+			);
+			path = "Avatar View";
+			sourceTree = "<group>";
+		};
 		347F74BD25D259F100ED13AA /* Item View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				347F74C925D25B8C00ED13AA /* ItemHeaderView.xib */,
-				347F74CE25D25C2900ED13AA /* ItemHeaderView.swift */,
+				34D61ECC25D347A500DB59C2 /* ItemView Header */,
+				34D61ED025D347AE00DB59C2 /* ItemTableViewCell */,
 				347F749F25D259AB00ED13AA /* PlanetViewController.swift */,
 				347F74A425D259BB00ED13AA /* PeopleViewController.swift */,
 				347F74A925D259C000ED13AA /* VehicleViewController.swift */,
@@ -272,12 +291,12 @@
 		34C6A2B525CB9A4E003CE7B8 /* Star Wars Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				345FB76B25D383590050663D /* Avatar View */,
 				34C6A2B625CB9A4E003CE7B8 /* AppDelegate.swift */,
 				34C6A2B825CB9A4E003CE7B8 /* SceneDelegate.swift */,
 				347F74BD25D259F100ED13AA /* Item View Controllers */,
 				3414CD3A25D2424000B21C73 /* Category Detail Table View */,
 				34C6A3D425CBDB39003CE7B8 /* Root Category Table View */,
-				34C6A31825CBAC9D003CE7B8 /* App Config */,
 				34C6A36725CBCC7E003CE7B8 /* Repository */,
 				34C6A35725CBCC2D003CE7B8 /* API Services */,
 				34C6A32C25CBAFA5003CE7B8 /* Models */,
@@ -327,13 +346,6 @@
 				34C6A30425CBAA88003CE7B8 /* Realm.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		34C6A31825CBAC9D003CE7B8 /* App Config */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "App Config";
 			sourceTree = "<group>";
 		};
 		34C6A32C25CBAFA5003CE7B8 /* Models */ = {
@@ -402,9 +414,28 @@
 			children = (
 				34C6A2BA25CB9A4E003CE7B8 /* CategoryTableViewController.swift */,
 				3414CD0025D22EB000B21C73 /* Root Main Header Footer */,
-				3414CCFC25D22E9700B21C73 /* CategoryTableView Cell */,
+				3414CCFC25D22E9700B21C73 /* Root TableView Cell */,
 			);
 			path = "Root Category Table View";
+			sourceTree = "<group>";
+		};
+		34D61ECC25D347A500DB59C2 /* ItemView Header */ = {
+			isa = PBXGroup;
+			children = (
+				347F74C925D25B8C00ED13AA /* ItemHeaderView.xib */,
+				347F74CE25D25C2900ED13AA /* ItemHeaderView.swift */,
+			);
+			path = "ItemView Header";
+			sourceTree = "<group>";
+		};
+		34D61ED025D347AE00DB59C2 /* ItemTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				34D61EBC25D3431900DB59C2 /* ItemTableViewCell.xib */,
+				345FB76625D37A120050663D /* ItemTableViewController.swift */,
+				34D61EC425D3433F00DB59C2 /* ItemTableViewCell.swift */,
+			);
+			path = ItemTableViewCell;
 			sourceTree = "<group>";
 		};
 		34E8416825CCF26400640ADE /* Starships */ = {
@@ -568,10 +599,12 @@
 				34C6A2C325CB9A4F003CE7B8 /* LaunchScreen.storyboard in Resources */,
 				3414CD4525D243FE00B21C73 /* CategoryDetailHeader.xib in Resources */,
 				34C6A3CB25CBDA94003CE7B8 /* CategoryTableViewCell.xib in Resources */,
+				34D61EE725D3509F00DB59C2 /* AvatarView.xib in Resources */,
 				347F748325D251A100ED13AA /* CategoryDetailTableViewCell.xib in Resources */,
 				34C6A2C025CB9A4F003CE7B8 /* Assets.xcassets in Resources */,
 				3414CCF825D21E3600B21C73 /* TableViewFooterView.xib in Resources */,
 				347F74CA25D25B8C00ED13AA /* ItemHeaderView.xib in Resources */,
+				34D61EBD25D3431900DB59C2 /* ItemTableViewCell.xib in Resources */,
 				3414CD0525D22EBC00B21C73 /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +698,7 @@
 				347F74B925D259E600ED13AA /* SpeciesViewController.swift in Sources */,
 				34E8421625CCF82A00640ADE /* PlanetsRepository.swift in Sources */,
 				34C6A32825CBAFA2003CE7B8 /* FilmsModel.swift in Sources */,
+				345FB76725D37A120050663D /* ItemTableViewController.swift in Sources */,
 				34E841FF25CCF71600640ADE /* API+Species+FetchByID.swift in Sources */,
 				34E841CC25CCF55300640ADE /* SpeciesData.swift in Sources */,
 				34C6A2B925CB9A4E003CE7B8 /* SceneDelegate.swift in Sources */,
@@ -684,10 +718,12 @@
 				347F74A025D259AB00ED13AA /* PlanetViewController.swift in Sources */,
 				34C6A31D25CBACD4003CE7B8 /* PeopleModel.swift in Sources */,
 				34E8418B25CCF37700640ADE /* API+Starships+FetchByID.swift in Sources */,
+				345FB76D25D383730050663D /* AvatarView.swift in Sources */,
 				34E841BB25CCF50A00640ADE /* VehiclesModel.swift in Sources */,
 				34C6A30F25CBAC0B003CE7B8 /* Constants.swift in Sources */,
 				3414CD8B25D24E9F00B21C73 /* CategoryRepository.swift in Sources */,
 				34E8422825CCFA1E00640ADE /* VehiclesRepository.swift in Sources */,
+				34D61EC525D3433F00DB59C2 /* ItemTableViewCell.swift in Sources */,
 				34C6A39D25CBD62C003CE7B8 /* FilmRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

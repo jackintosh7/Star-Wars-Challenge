@@ -9,6 +9,7 @@ import UIKit
 
 class CategoryItemTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var subTextLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
@@ -16,6 +17,8 @@ class CategoryItemTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+//        self.avatarView.bgView.layer.cornerRadius = self.avatarView.bgView.frame.size.width / 2
+//        self.avatarView.bgView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

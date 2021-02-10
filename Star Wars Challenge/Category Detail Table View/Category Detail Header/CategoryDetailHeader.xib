@@ -11,13 +11,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CategoryDetailHeaderView" customModule="Star_Wars_Challenge" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="442" height="56"/>
+            <rect key="frame" x="0.0" y="0.0" width="442" height="84"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dsc-Ps-bQ9">
-                    <rect key="frame" x="5" y="9" width="432" height="38"/>
+                    <rect key="frame" x="10" y="-3" width="423" height="91"/>
                     <attributedString key="attributedText">
-                        <fragment content="&quot;Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.”.">
+                        <fragment content="&quot;Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.”">
                             <attributes>
                                 <font key="NSFont" metaFont="menu" size="14"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
@@ -30,16 +30,16 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Dsc-Ps-bQ9" secondAttribute="bottom" constant="9" id="5gC-Zn-iC7"/>
-                <constraint firstItem="Dsc-Ps-bQ9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="9W3-J4-2Bc"/>
-                <constraint firstItem="Dsc-Ps-bQ9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="HJz-LW-1rQ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Dsc-Ps-bQ9" secondAttribute="trailing" constant="5" id="Uww-7w-nH7"/>
+                <constraint firstAttribute="bottom" secondItem="Dsc-Ps-bQ9" secondAttribute="bottom" constant="-4" id="5gC-Zn-iC7"/>
+                <constraint firstItem="Dsc-Ps-bQ9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-3" id="9W3-J4-2Bc"/>
+                <constraint firstItem="Dsc-Ps-bQ9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="HJz-LW-1rQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Dsc-Ps-bQ9" secondAttribute="trailing" constant="9" id="Uww-7w-nH7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="headerText" destination="Dsc-Ps-bQ9" id="cek-c9-tNj"/>
             </connections>
-            <point key="canvasLocation" x="-241" y="-137"/>
+            <point key="canvasLocation" x="-242.0289855072464" y="-127.90178571428571"/>
         </view>
         <view contentMode="scaleToFill" id="Ngh-oc-rMH">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>

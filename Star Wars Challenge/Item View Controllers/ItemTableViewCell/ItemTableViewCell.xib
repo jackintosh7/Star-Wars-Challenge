@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="133" id="4RM-ff-NRm" customClass="ItemTableViewCell" customModule="Star_Wars_Challenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4RM-ff-NRm" id="uNs-jt-fas">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmL-te-B8u">
+                        <rect key="frame" x="16" y="11" width="382" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxs-VW-D9T">
+                        <rect key="frame" x="16" y="36" width="374" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuU-IQ-duv">
+                        <rect key="frame" x="16" y="65" width="382" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="9IL-LT-fuu"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcN-bl-QF1">
+                        <rect key="frame" x="0.0" y="94" width="414" height="39"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="39" id="yiG-HS-cyt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YuU-IQ-duv" firstAttribute="leading" secondItem="uNs-jt-fas" secondAttribute="leading" constant="16" id="00d-PM-7d9"/>
+                    <constraint firstItem="rxs-VW-D9T" firstAttribute="top" secondItem="qmL-te-B8u" secondAttribute="bottom" constant="8" symbolic="YES" id="2d1-y7-ldN"/>
+                    <constraint firstAttribute="trailing" secondItem="rxs-VW-D9T" secondAttribute="trailing" constant="24" id="5gh-gK-aXz"/>
+                    <constraint firstAttribute="trailing" secondItem="qmL-te-B8u" secondAttribute="trailing" constant="16" id="cB9-16-YfJ"/>
+                    <constraint firstAttribute="bottom" secondItem="mcN-bl-QF1" secondAttribute="bottom" id="gKC-bH-gKI"/>
+                    <constraint firstItem="rxs-VW-D9T" firstAttribute="leading" secondItem="uNs-jt-fas" secondAttribute="leading" constant="16" id="gOx-pI-wnG"/>
+                    <constraint firstAttribute="trailing" secondItem="YuU-IQ-duv" secondAttribute="trailing" constant="16" id="hVK-Uq-TZ1"/>
+                    <constraint firstItem="qmL-te-B8u" firstAttribute="leading" secondItem="uNs-jt-fas" secondAttribute="leading" constant="16" id="j2r-zZ-s5A"/>
+                    <constraint firstItem="qmL-te-B8u" firstAttribute="top" secondItem="uNs-jt-fas" secondAttribute="top" constant="11" id="jhh-Sy-U5o"/>
+                    <constraint firstItem="mcN-bl-QF1" firstAttribute="leading" secondItem="uNs-jt-fas" secondAttribute="leading" id="mRl-98-lyK"/>
+                    <constraint firstItem="YuU-IQ-duv" firstAttribute="top" secondItem="rxs-VW-D9T" secondAttribute="bottom" constant="8" id="wpM-t8-T1p"/>
+                    <constraint firstAttribute="trailing" secondItem="mcN-bl-QF1" secondAttribute="trailing" id="xJ6-IP-9cX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="property" destination="qmL-te-B8u" id="vMb-ze-oag"/>
+                <outlet property="value" destination="rxs-VW-D9T" id="GW7-hA-9es"/>
+            </connections>
+            <point key="canvasLocation" x="-568.1159420289855" y="-53.236607142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

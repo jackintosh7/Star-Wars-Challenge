@@ -20,11 +20,11 @@ final class FilmsModel: Object, Decodable {
     @objc dynamic var director: String = ""
     @objc dynamic var producer: String = ""
     @objc dynamic var releaseDate: String = ""
-    @objc dynamic var species: [String]?
-    @objc dynamic var starships: [String]?
-    @objc dynamic var vehicles: [String]?
-    @objc dynamic var characters: [String]?
-    @objc dynamic var planets: [String]?
+    var species = List<String>()
+    var starships = List<String>()
+    var vehicles = List<String>()
+    var characters = List<String>()
+    var planets = List<String>()
     @objc dynamic var url: String = ""
     @objc dynamic var created: String = ""
     @objc dynamic var edited: String = ""
@@ -44,11 +44,11 @@ final class FilmsModel: Object, Decodable {
         director = try container.decode(.director)
         producer = try container.decode(.producer)
         releaseDate = try container.decode(.releaseDate)
-        species = try? container.decodeIfPresent(.species)
-        starships = try? container.decodeIfPresent(.starships)
-        vehicles = try? container.decodeIfPresent(.vehicles)
-        characters = try? container.decodeIfPresent(.characters)
-        planets = try? container.decodeIfPresent(.planets)
+        species = try container.decode(.species)
+        starships = try container.decode(.starships)
+        vehicles = try container.decode(.vehicles)
+        characters = try container.decode(.characters)
+        planets = try container.decode(.planets)
         url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)

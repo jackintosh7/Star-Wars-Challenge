@@ -31,7 +31,6 @@ class CategoryDetailTableViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "detailCategoryCell")
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .none
         
         self.view.addSubview(tableView)
         self.view.backgroundColor = UIColor.white
@@ -67,14 +66,14 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 84
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerViewXIB = Bundle.main.loadNibNamed("CategoryDetailHeader", owner: self, options: nil)
         let headerView = headerViewXIB?.first as! CategoryDetailHeaderView
-        headerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60)
+        headerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 84)
         
         return headerView
     }
@@ -87,9 +86,31 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCategoryCell", for: indexPath) as! CategoryItemTableViewCell
         let categoryItem = self.categoryItems[indexPath.row]
         
-        cell.headerLabel.text = categoryItem.title
         cell.subTextLabel.text = categoryItem.subTitle
-        cell.createdAtLabel.text = categoryItem.created?.toDate("yyyy-MM-dd HH:mm")?.toString()
+        
+        if let createdAt = categoryItem.created {
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss:SSSZZZZZ"
+
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+
+            if let date = dateFormatterGet.date(from: createdAt) {
+                print(dateFormatterPrint.string(from: date))
+            } else {
+               print("There was an error decoding the string")
+            }
+        }
+
+        cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width/2
+        cell.avatarView.clipsToBounds = true
+
+        if let title = categoryItem.title {
+            cell.avatarView.avatarText.text = Utilities.sharedManager.initalGenerator(text: title)
+            cell.headerLabel.text = categoryItem.title
+        } else {
+            cell.headerLabel.text = "-"
+        }
         
         if indexPath.row == categoryItems.count - 1 { // last cell
             if categoryItems.count != totalResults {
@@ -99,37 +120,35 @@ extension CategoryDetailTableViewController: UITableViewDelegate, UITableViewDat
         }
         return cell
     }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryItem = self.categoryItems[indexPath.row]
         
-        var vc : UIViewController?
+        var vc = PlanetViewController()
+        vc.objectID = "2"
 
-        if let category = self.category {
-            switch category {
-            case .Films:
-                vc = FilmViewController()
-            case .People:
-                vc = PeopleViewController()
-            case .Planets:
-                vc = PlanetViewController()
-            case .Species:
-                vc = SpeciesViewController()
-            case .Starships:
-                vc = StarshipViewController()
-            case .Vehicles:
-                vc = VehicleViewController()
-            }
-        }
+//        if let category = self.category {
+//            switch category {
+//            case .Films:
+//                vc = FilmViewController()
+//            case .People:
+//                vc = PeopleViewController()
+//            case .Planets:
+////                vc = PlanetViewController()
+//                vc.objectID = "2"
+//            case .Species:
+//                vc = SpeciesViewController()
+//            case .Starships:
+//                vc = StarshipViewController()
+//            case .Vehicles:
+//                vc = VehicleViewController()
+//            }
+//        }
         
-        if let vc = vc {
+//        if let vc = vc {
             //set URL
             self.navigationController?.pushViewController(vc, animated: true)
-        }
+//        }
         
     }
-    
 }

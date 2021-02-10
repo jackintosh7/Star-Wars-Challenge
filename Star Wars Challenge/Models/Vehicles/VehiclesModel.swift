@@ -27,8 +27,8 @@ final class VehiclesModel: Object, Decodable {
     @objc dynamic var mglt: String = ""
     @objc dynamic var cargoCapacity: String = ""
     @objc dynamic var consumables: String = ""
-    @objc dynamic var films: [String]?
-    @objc dynamic var pilots: [String]?
+    var films = List<String>()
+    var pilots = List<String>()
     @objc dynamic var url: String = ""
     @objc dynamic var created: String = ""
     @objc dynamic var edited: String = ""
@@ -56,8 +56,8 @@ final class VehiclesModel: Object, Decodable {
         cargoCapacity = try container.decode(.cargoCapacity)
         consumables = try container.decode(.consumables)
         cargoCapacity = try container.decode(.cargoCapacity)
-        films = try? container.decodeIfPresent(.films)
-        pilots = try? container.decodeIfPresent(.pilots)
+        films = try container.decode(.films)
+        pilots = try container.decode(.pilots)
         url = try container.decode(.url)
         created = try container.decode(.created)
         edited = try container.decode(.edited)

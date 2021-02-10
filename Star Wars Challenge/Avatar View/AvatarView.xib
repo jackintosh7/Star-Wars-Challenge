@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AvatarView" customModule="Star_Wars_Challenge" customModuleProvider="target">
+            <connections>
+                <outlet property="avatarText" destination="b1u-xL-VVz" id="0aI-lw-jsJ"/>
+                <outlet property="bgView" destination="wOZ-SC-szb" id="K1X-lj-aLd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="nHC-eo-5vI">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOZ-SC-szb">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1u-xL-VVz">
+                            <rect key="frame" x="49" y="53" width="102" height="94"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="102" id="Drn-Cm-zPb"/>
+                                <constraint firstAttribute="height" constant="94" id="eZL-ec-iOE"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="wOZ-SC-szb" secondAttribute="height" multiplier="1:1" id="H89-Sq-Fjg"/>
+                        <constraint firstItem="b1u-xL-VVz" firstAttribute="centerX" secondItem="wOZ-SC-szb" secondAttribute="centerX" id="HHw-Lr-6JX"/>
+                        <constraint firstItem="b1u-xL-VVz" firstAttribute="centerY" secondItem="wOZ-SC-szb" secondAttribute="centerY" id="hOj-RC-FsC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="E31-WP-cYQ"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wOZ-SC-szb" firstAttribute="bottom" secondItem="E31-WP-cYQ" secondAttribute="bottom" id="1ZX-y1-uGF"/>
+                <constraint firstItem="wOZ-SC-szb" firstAttribute="leading" secondItem="E31-WP-cYQ" secondAttribute="leading" id="4FW-ve-9yf"/>
+                <constraint firstItem="wOZ-SC-szb" firstAttribute="trailing" secondItem="E31-WP-cYQ" secondAttribute="trailing" id="621-ne-wOp"/>
+                <constraint firstItem="wOZ-SC-szb" firstAttribute="top" secondItem="nHC-eo-5vI" secondAttribute="top" id="u3K-xe-H4g"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-63.768115942028992" y="-104.46428571428571"/>
+        </view>
+    </objects>
+</document>
